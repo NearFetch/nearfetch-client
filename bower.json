@@ -1,0 +1,25 @@
+{
+  "name": "nearfetch",
+  "version": "0.0.0",
+  "homepage": "https://github.com/NearFetch",
+  "authors": [
+    "Marek <nospam.keram+nearfetch@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "jspm_packages",
+    "src",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "normalize.css": "~3.0.3",
+    "mui": "~0.1.21"
+  },
+  "devDependencies": {
+  }
+}

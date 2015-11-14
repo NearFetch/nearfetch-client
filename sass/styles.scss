@@ -1,0 +1,103 @@
+@charset 'UTF-8';
+
+@import 'bower_components/mui/src/sass/mui/_colors';
+
+// customize MUI variables
+$mui-primary-color:       orange;
+$mui-primary-color-dark:  mui-color('purple', '700');
+$mui-primary-color-light: mui-color('purple', '100');
+
+$mui-accent-color:        mui-color('green', 'A200');
+$mui-accent-color-dark:   mui-color('green', 'A100');
+$mui-accent-color-light:  mui-color('green', 'A400');
+
+// import MUI SASS
+@import "bower_components/mui/src/sass/mui";
+
+.blocks:before,
+.blocks:after {
+    content:" ";
+    display:table
+}
+
+.blocks:after {
+    clear:both
+}
+
+.block-aside:first-child:last-child {
+    float:right
+}
+
+.block-main {
+    width: 62.2%;
+    float: left;
+
+    + .block-aside {
+        float: right;
+    }
+}
+
+.block-aside {
+    width: 37.25%;
+    float: left;
+
+    + .block-main {
+        float: right;
+    }
+}
+
+.block-half {
+    width: 50%;
+    float: left;
+
+    + .block-half {
+        float: right;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+.error-modal {
+    margin: 3em auto;
+    width: 400px;
+    min-height: 200px;
+    padding: 25px;
+    background: #fff;
+}
+
+#main {
+    position: relative;
+}
+
+
+.invert {
+  background: #1f1f1f;
+  color: #dcdccc;
+}
+
+.invert h2, .invert h3 {
+  color: #7f9f7f;
+}
+
+.string, .regexp {
+  color: #f39;
+}
+
+.keyword {
+  color: #00c;
+}
+
+.comment {
+  color: #777;
+  font-style: oblique;
+}
+
+.number {
+  color: #369;
+}
+
+.class, .special {
+  color: #1181B8;
+}
