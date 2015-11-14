@@ -1,16 +1,22 @@
 (function () {
     'use strict';
+
     let template = `
         <style>
-            .fetch-container{
-                position:absolute;
-                top:0px;
+            .fetch-container {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
             }
         </style>
         <div class="fetch-container">
             FETCH
+            -f-
         </div>
     `;
+
     class FetchWidget extends HTMLElement {
 
         // Fires when an instance of the element is created.
@@ -30,7 +36,7 @@
         // Fires when an attribute was added, removed, or updated.
         attributeChangedCallback(attrName, oldVal, newVal) {}
         draw(){
-            this.$container.innerHTML="FETCH";
+
         }
         addElements(){
             //x='51.505' y='-0.09'
