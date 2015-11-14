@@ -39,3 +39,4 @@ Thumbs.db
 
 vendor/*
 jspm_packages/
+components/es5/*
