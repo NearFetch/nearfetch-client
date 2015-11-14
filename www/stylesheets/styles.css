@@ -1942,7 +1942,9 @@ img {
 #header {
   background-color: #1976D2;
   padding: 8px 15px;
-  color: #FFF; }
+  color: #FFF;
+  position: relative;
+  z-index: 10000; }
   #header input {
     border: solid 1px #2196F3;
     outline: none;

@@ -100,6 +100,8 @@ img {
     background-color: $mui-appbar-bg-color;
     padding: 8px 15px;
     color: $mui-appbar-font-color;
+    position: relative;
+    z-index: 10000;
 
     input {
         border: solid 1px $mui-primary-color;

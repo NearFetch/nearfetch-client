@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" href="/www/stylesheets/styles.css">
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-<!--
+
     <script src="/bower_components/mui/dist/js/mui.min.js"></script>
-     -->
+
     <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
     <script src="/bower_components/leaflet/dist/leaflet.js"></script>
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
@@ -29,14 +29,38 @@
 </head>
 <body>
 <div id="container" >
-    <div id="header" data-mui-fluid="true" >
-        <form class="mui-form--inline" id="destination-form">
+    <div id="header" data-mui-fluid="true" ><!--
+        <form class="mui-form-inline" id="destination-form">
           <div class="mui-textfield">
             <input type="search" placeholder="Search or pick your destination" />
           </div>
-        </form>
-        <span>&nbsp;OR&nbsp;</span>
-        <button class="mui-btn mui-btn-primary">New request</button>
+        </form> -->
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                  <button class="mui-btn mui-btn-primary" >
+                    <i class="typcn typcn-plus"></i> New
+                  </button>
+
+                  <button class="mui-btn" >
+                    <i class="typcn typcn-location-outline"></i>
+                  </button>
+                </td>
+                <td class="mui-text-right">
+                    <div class="mui-dropdown">
+                      <button class="mui-btn mui-btn-primary" data-mui-toggle="dropdown">
+                        <i class="typcn typcn-user-outline"></i>&nbsp;Alice&nbsp;
+                        <span class="mui-caret"></span>
+                      </button>
+                      <ul class="mui-dropdown-menu">
+                        <li><a href="#">My requests</a></li>
+                        <li><a href="#">My profile</a></li>
+                      </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
     </div>
     <div id="content-wrapper" data-mui-fluid="true">
         <div id="main-wrapper">
