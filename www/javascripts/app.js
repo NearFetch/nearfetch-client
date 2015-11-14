@@ -1,7 +1,7 @@
 /*global $, window, L */
 
-import io from 'socket.io-client';
-import React from 'react';
+// import io from 'socket.io-client';
+// import React from 'react';
 
 
 (function () {
