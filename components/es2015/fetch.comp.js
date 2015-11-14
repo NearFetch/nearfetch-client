@@ -13,18 +13,17 @@
     `;
     class FetchWidget extends HTMLElement {
 
-
         // Fires when an instance of the element is created.
         createdCallback() {
             this.createShadowRoot().innerHTML = template;
             this.$container = this.shadowRoot.querySelector('.fetch-container');
             this.draw();
-
-
         }
         connectParent(lf){
             console.log("fetch connected to leaflet");
             this.$leaflet=lf;
+            this.addElements();
+
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}
@@ -32,6 +31,15 @@
         attributeChangedCallback(attrName, oldVal, newVal) {}
         draw(){
             this.$container.innerHTML="FETCH";
+        }
+        addElements(){
+            //x='51.505' y='-0.09'
+            var markers=[{x:51.505,y:-0.09,label:"bring brolly",style:"brolly",reference:999},
+            {x:51.500,y:-0.09,label:"need booze",style:"beer",reference:998},
+            {x:51.505,y:-0.08,label:"needs booze",style:"beer",reference:997}];
+
+            this.$leaflet.clearMarkers();
+            this.$leaflet.addMarkers(markers);
         }
         verify(){
             console.log("Fetch widget verified");

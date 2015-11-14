@@ -17,12 +17,16 @@
             <route-widget></route-widget>
         </div>
     `;
+    let markerStyles=[{name:"default",icon:"",color:""},
+    {name:"beer",icon:"/icons/beer.png",color:"#FF0000"},
+            {name:"brolly",icon:"/icons/brolly.png",color:"#00FF00"}];
     class LeafletView extends HTMLElement {
 
+        
         // Fires when an instance of the element is created.
         createdCallback() {
             this.createShadowRoot().innerHTML = template;
-            
+            this.$map={};
             this.$access_token='pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ'
 
             this.$container = this.shadowRoot.querySelector('.leaf-holder');
@@ -38,8 +42,39 @@
                 that.refreshMap();
             }, 2000);
         }
-        
-        
+        clearMarkers(){
+            console.log("clear markers from map");
+
+        }
+        addMarkers(m){
+            console.log({"markers":m});
+            //x='51.505' y='-0.09'
+            var defaultIcon=L.divIcon({className: 'leaflet-div-icon'});
+            //L.marker([51.505, -0.09, {icon:defaultIcon}]).addTo(this.$map);
+
+            for(var i=0;i<m.length;i++){
+
+                var item=m[i];
+                var style=this.getStyle(item.style);
+
+                if(style.icon==""){
+                    console.log("no icon specified");
+                    //L.marker([51.505, -0.09, {icon:defaultIcon}]).addTo(this.$map);
+                    L.marker([item.x, item.y,{icon:defaultIcon}]).addTo(this.$map);
+                }else{
+                    var customicon=L.divIcon({className: style.icon+'-div-icon'});
+                    console.log("icon '"+style.icon+"' specified");
+                    L.marker([item.x, item.y], {icon: customicon}).addTo(this.$map);
+                }
+                console.log("Add marker "+i+" at "+item.x+","+item.y);
+            }
+        }
+        getStyle(s){
+           for(var i=0;i<markerStyles;i++){
+            if(markerStyles[i].name==s){return markerStyles[i];}
+           }
+           return markerStyles[0];
+        }
         connectChildren(fetch,route){
             console.log("connected to children");
 
@@ -103,7 +138,7 @@
             $('<div />', {
                 id: 'map-holder'
             }).appendTo(this.$leafwrapper);
-
+            
             this.$map= L.map('map-holder').setView([this.$viewx, this.$viewy], 13);
 
            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+this.$access_token, 
