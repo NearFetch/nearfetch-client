@@ -1,5 +1,9 @@
+//import FetchWidget from 'fetch-widget';
+//import RouteWidget from 'route-widget';
+
 (function () {
     'use strict';
+
 
     let template = `
         <style>
@@ -9,8 +13,8 @@
             }
         </style>
         <div id="leaf-holder">
-                <fetch-widget></fetch-widget>
-                <route-widget></route-widget>
+            <fetch-widget></fetch-widget>
+            <route-widget></route-widget>
         </div>
     `;
     class LeafletView extends HTMLElement {
@@ -23,24 +27,42 @@
 
             this.$container = this.shadowRoot.querySelector('.leaf-holder');
             this.initAttributes();
-            this.connectChildren();
+            
             this.initMap();
 
             //Call the draw function initially
             this.draw();
             var that = this;
-            //Call the draw function every two second to update the map
-            /*setInterval(function () {
-                that.draw();
-            }, 2000);*/
+            //Call the draw function every two seconds to update the map
+            setInterval(function () {
+                that.refreshMap();
+            }, 2000);
         }
-        connectChildren(){
+        
+        
+        connectChildren(fetch,route){
+            console.log("connected to children");
 
+            this.$fetch=fetch;
+            this.$route=route;
+            
+        }
+        refreshMap(){
+            console.log("refresh map");
+            //this.connectElement();
+        }
+         connectElement(){
+            if(window.app!=undefined && this.$registered==undefined){
+                this.$registered=app.register("leaflet",me);
+            }
         }
         initAttributes(){
             this.$leafwrapper=$('#'+this.getAttribute('wrapper-id'));
             this.$viewx=this.getAttribute('x');
             this.$viewy=this.getAttribute('y');
+        }
+        verify(){
+            console.log("leaflet verified");
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}

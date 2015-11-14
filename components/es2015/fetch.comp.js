@@ -13,11 +13,18 @@
     `;
     class FetchWidget extends HTMLElement {
 
+
         // Fires when an instance of the element is created.
         createdCallback() {
             this.createShadowRoot().innerHTML = template;
             this.$container = this.shadowRoot.querySelector('.fetch-container');
             this.draw();
+
+
+        }
+        connectParent(lf){
+            console.log("fetch connected to leaflet");
+            this.$leaflet=lf;
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}
@@ -25,6 +32,9 @@
         attributeChangedCallback(attrName, oldVal, newVal) {}
         draw(){
             this.$container.innerHTML="FETCH";
+        }
+        verify(){
+            console.log("Fetch widget verified");
         }
     }
     document.registerElement('fetch-widget', FetchWidget);

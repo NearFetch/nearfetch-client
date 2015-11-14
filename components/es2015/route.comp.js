@@ -18,6 +18,11 @@
             this.createShadowRoot().innerHTML = template;
             this.$container=this.shadowRoot.querySelector('.route-container');
             this.draw();
+            
+        }
+        connectParent(lf){
+            console.log("route connected to leaflet");
+            this.$leaflet=lf;
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}
@@ -26,6 +31,9 @@
         draw(){
             console.log("draw route");
             this.$container.innerHTML="ROUTE";
+        }
+        verify(){
+            console.log("Route widget verified");
         }
     }
     document.registerElement('route-widget', RouteWidget);

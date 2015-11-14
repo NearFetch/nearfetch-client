@@ -20,12 +20,19 @@
             this.$container = this.shadowRoot.querySelector('.fetch-container');
             this.draw();
         }
+        connectParent(lf) {
+            console.log("fetch connected to leaflet");
+            this.$leaflet = lf;
+        }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}
         // Fires when an attribute was added, removed, or updated.
         attributeChangedCallback(attrName, oldVal, newVal) {}
         draw() {
             this.$container.innerHTML = "FETCH";
+        }
+        verify() {
+            console.log("Fetch widget verified");
         }
     }
     document.registerElement('fetch-widget', FetchWidget);
