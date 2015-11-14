@@ -11,16 +11,18 @@
     <link href="/bower_components/mui/dist/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="/bower_components/mui/dist/js/mui.min.js"></script>
 
-
     <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
     <script src="/bower_components/leaflet/dist/leaflet.js"></script>
-
-    <script src="/www/javascripts/leaflet.js"></script>
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="/components/es5/fetch.comp.js"></script>
+    <script src="/components/es5/route.comp.js"></script>
+    <script src="/components/es5/leaflet.comp.js"></script>
 
     <script src="/jspm_packages/system.js"></script>
     <script src="/config.js"></script>
+
     <script>
-      System.import('/www/javascripts/app');
+      System.import('/www/javascripts/app.view');
     </script>
 </head>
 <body>
@@ -39,8 +41,11 @@
     </div>
     <div id="content-wrapper">
         <div id="main-wrapper">
-            <div id="main">
-            </div>
+            <leaflet-view>
+                <fetch-widget></fetch-widget>
+                <route-widget></route-widget>
+            </leaflet-view>
+
         </div>
     </div>
 </div>

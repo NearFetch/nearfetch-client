@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp'),
+    babel = require('gulp-babel'),
     jslint = require('gulp-jslint'),
     webserver = require('gulp-webserver'),
     argv = require('yargs').argv;
@@ -42,6 +43,14 @@ gulp.task('js-lint', function () {
         });
 });
 
+gulp.task('comp',function(){
+    //babel components/es2015/date-widget.es2015.comp.js 
+    //       --out-file components/es5/date-widget.comp.js
+    return gulp.src(['components/es2015/*.comp.js'])
+    .pipe(babel())
+    .pipe(gulp.dest('components/es5'));
+})
+
 gulp.task('server', function () {
     return gulp.src('')
         .pipe(webserver({
@@ -52,6 +61,6 @@ gulp.task('server', function () {
         }));
 });
 
-gulp.task('default', ['sass', 'sass:watch', 'server'], function () {
-    // gulp.watch(files.js, ['js-lint']);
+gulp.task('default', ['sass', 'sass:watch', 'comp','server'], function () {
+     gulp.watch('components/es2015/*.comp.js', ['comp']);
 });

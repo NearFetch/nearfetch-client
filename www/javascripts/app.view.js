@@ -5,6 +5,5 @@
 
 (function () {
     'use strict';
-    var doc = $(document);s
-
+    var doc = $(document);
 }());
