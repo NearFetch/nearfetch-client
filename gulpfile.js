@@ -44,10 +44,12 @@ gulp.task('js-lint', function () {
 });
 
 gulp.task('comp',function(){
-    //babel components/es2015/date-widget.es2015.comp.js 
+    //babel components/es2015/date-widget.es2015.comp.js
     //       --out-file components/es5/date-widget.comp.js
     return gulp.src(['components/es2015/*.comp.js'])
-    .pipe(babel())
+    .pipe(babel({
+            presets: ['es2015']
+        }))
     .pipe(gulp.dest('components/es5'));
 })
 
