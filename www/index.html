@@ -8,21 +8,16 @@
     <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" href="/www/stylesheets/styles.css">
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <link href="/bower_components/mui/dist/css/mui.min.css" rel="stylesheet" type="text/css" />
+<!--
     <script src="/bower_components/mui/dist/js/mui.min.js"></script>
+     -->
     <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
     <script src="/bower_components/leaflet/dist/leaflet.js"></script>
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <script src="/components/es5/fetch.comp.js"></script>
     <script src="/components/es5/route.comp.js"></script>
     <script src="/components/es5/leaflet.comp.js"></script>
-
     <link rel="stylesheet" href='/bower_components/typicons.font/src/font/typicons.min.css' />
-<!--
-    <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
-    <script src="/bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="/www/javascripts/leaflet.js"></script>
- -->
 <!--
     <script src="/jspm_packages/system.js"></script>
     <script src="/config.js"></script>
@@ -33,29 +28,23 @@
      -->
 </head>
 <body>
-<div id="container" data-mui-fluid="true">
-    <div id="top" class="mui-appbar mui-appbar-line-height" style="padding: 0 15px;">
-        <div class="mui-row">
-            <div class="mui-col-xs-2 mui-col-md-2">
-                <span class="icon-home"></span> NearFetch
-            </div>
-            <div class="mui-col-xs-6 mui-col-md-6">
-                -t-
-            </div>
-            <div class="mui-col-xs-6 mui-col-md-6 mui--text-right">
-                <span class="typcn typcn-arrow-left"></span>-t- tests
-            </div>
-        </div>
-        </div>
+<div id="container" >
+    <div id="header" data-mui-fluid="true" >
+        <form class="mui-form--inline" id="destination-form">
+          <div class="mui-textfield">
+            <input type="search" placeholder="Search or pick your destination" />
+          </div>
+        </form>
+        <span>&nbsp;OR&nbsp;</span>
+        <button class="mui-btn mui-btn-primary">New request</button>
     </div>
-    <div id="content-wrapper">
+    <div id="content-wrapper" data-mui-fluid="true">
         <div id="main-wrapper">
             <div id="leafholder"></div>
             <leaflet-view wrapper-id="leafholder" x='51.505' y='-0.09'>
                 <fetch-widget></fetch-widget>
                 <route-widget></route-widget>
             </leaflet-view>
-
         </div>
     </div>
 </div>
