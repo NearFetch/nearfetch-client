@@ -41,27 +41,34 @@
     </script>
 </head>
 <body>
+    
+<div id="splash" style="display:none">
+    <img src="/www/images/NearFetch.jpg"/>   
+</div> 
+
 <div id="container" >
     <div id="header" data-mui-fluid="true" >
         <table style="width: 100%;">
             <tr>
                 <td>
-                  <button class="mui-btn mui-btn-primary" >
-                    <i class="typcn typcn-plus"></i> New
+                  <button class="mui-btn mui-btn--primary" id="new-request-button">
+                    <i class="typcn typcn-plus"></i> New NearFetch
                   </button>
 
                   <button class="mui-btn" >
                     <i class="typcn typcn-location-outline"></i>
                   </button>
                 </td>
-                <td class="mui-text-right">
+                <td class="mui-text--right">
                     <div class="mui-dropdown">
-                      <button class="mui-btn mui-btn-primary" data-mui-toggle="dropdown">
-                        <i class="typcn typcn-user-outline"></i>&nbsp;Alice&nbsp;
+                      <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+                        <span class="user-requests"></span>
+                        <i class="typcn typcn-user-outline"></i>&nbsp;
+                        <span class="user-name">Alice</span>&nbsp;
                         <span class="mui-caret"></span>
                       </button>
-                      <ul class="mui-dropdown-menu">
-                        <li><a href="#">My requests</a></li>
+                      <ul class="mui-dropdown__menu">
+                        <li><a href="#">My nearfetches <span class="user-requests"></span></a></li>
                         <li><a href="#">My profile</a></li>
                       </ul>
                     </div>
@@ -79,6 +86,50 @@
             </leaflet-view>
         </div>
     </div>
+</div>
+<div id="new-request-modal-template" class="hide">
+  <div class="inner">
+    <form>
+      <legend>New NearFetch</legend>
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" placeholder="fresh milk from Tesco">
+        <label>I need:</label>
+      </div>
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" value="" placeholder="My current location" style="width: 50%; float: left;">
+        <label>At:</label>
+        <a href="#">Change location</a>
+      </div>
+
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" value="" placeholder="2 hours" style="width: 50%; float: left; margin-right: 3px;">
+        <label>In:</label>
+        <span class="note">You can set exact time or range when your item should be delivered.</span>
+      </div>
+
+      <div class="mui-textfield mui-textfield-float-label">
+        <textarea placeholder="Semi Skimmed 1 Pint milk from Morrison, Thank You"></textarea>
+        <label>Details:</label>
+      </div>
+      <button type="submit" id="create-request-button" class="mui-btn mui-btn--primary mui-btn--raised">Create</button>
+    </form>
+  </div>
+</div>
+<div id="new-request-confirmation-modal-template" class="hide">
+  <div class="inner">
+    <div class="dialog processing">
+      Please wait, while we processing your request..
+    </div>
+    <div class="dialog confirm">
+      <h3>Thank You for using our service, <br/>it's honor for us to helping you.</h3>
+      <p>
+        Now you can rest and you will be notified when someone accept your "NearFetch" request.
+      </p>
+      <p>
+      <button type="submit" id="finish-new-request-button" class="mui-btn mui-btn--primary mui-btn--raised">Continue..</button>
+      </p>
+    </div>
+  </div>
 </div>
 </body>
 </html>
