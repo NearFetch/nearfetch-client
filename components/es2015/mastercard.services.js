@@ -1,3 +1,8 @@
+// MoneySend
+// https://developer.mastercard.com/portal/display/api/MoneySend
+// and (or) Bill Payment
+// https://developer.mastercard.com/portal/display/api/Bill+Payment
+// https://developer.mastercard.com/portal/display/api/Mobile+Payment+SDK
 class MastercardServices {
 	constructor(){
 		/*public key: sbpb_NWVkMTJkZTgtYWRiNC00MTVhLThjZjUtODNmZWIxNWQwNTE1
