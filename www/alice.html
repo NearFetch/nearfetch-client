@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NearFetch - Alice</title>
+    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css">
+    <link rel="stylesheet" href='/bower_components/typicons.font/src/font/typicons.min.css' />
+    <link rel="stylesheet" href="/www/stylesheets/styles.css">
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="/bower_components/mui/dist/js/mui.min.js"></script>
+
+    <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
+    <script src="/bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="/www/javascripts/leaflet.js"></script>
+<!--
+    <link rel="stylesheet" href="/node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+    <script src="/node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="/node_modules/sprintf-js/dist/sprintf.min.js"></script>
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="/components/es5/fetch.comp.js"></script>
+    <script src="/components/es5/route.comp.js"></script>
+    <script src="/components/es5/leaflet.comp.js"></script>
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/config.js"></script>
+
+    <script>
+      System.import('/components/es5/mastercard.services');
+      System.import('/components/es5/police.services');
+      System.import('/components/es5/simplify.services');
+      System.import('/components/es5/tfl.services');
+      System.import('/components/es5/twitter.services');
+      System.import('/components/es5/app.services');
+
+      System.import('/www/javascripts/app.view');
+    </script>
+    -->
+
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/config.js"></script>
+    <script>
+      System.import('/www/javascripts/app');
+    </script>
+</head>
+<body>
+<div id="container" >
+    <div id="header" data-mui-fluid="true" >
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                  <button class="mui-btn mui-btn--primary" id="new-request-button">
+                    <i class="typcn typcn-plus"></i> New NearFetch
+                  </button>
+
+                  <button class="mui-btn" id="new-journey-destination-button">
+                    <i class="typcn typcn-location-outline"></i>
+                  </button>
+                </td>
+                <td class="mui-text--right">
+                    <div class="mui-dropdown">
+                      <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+                        <span class="user-requests"></span>
+                        <i class="typcn typcn-user-outline"></i>&nbsp;
+                        <span class="user-name">Alice</span>&nbsp;
+                        <span class="mui-caret"></span>
+                      </button>
+                      <ul class="mui-dropdown__menu">
+                        <li><a href="#">My nearfetches <span class="user-requests"></span></a></li>
+                        <li><a href="#">My profile</a></li>
+                      </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="content-wrapper" data-mui-fluid="true">
+        <div id="main-wrapper">
+            <div id="leafholder"></div>
+            <leaflet-view wrapper-id="leafholder" x='51.505' y='-0.09'>
+                <fetch-widget></fetch-widget>
+                <route-widget></route-widget>
+            </leaflet-view>
+        </div>
+    </div>
+</div>
+<div id="new-request-modal-template" class="hide">
+  <div class="inner">
+    <form>
+      <legend>New NearFetch</legend>
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" placeholder="fresh milk from Tesco">
+        <label>I need:</label>
+      </div>
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" value="" placeholder="My current location" style="width: 50%; float: left;">
+        <label>At:</label>
+        <a href="#">Change location</a>
+      </div>
+
+      <div class="mui-textfield mui-textfield-float-label">
+        <input type="text" value="" placeholder="2 hours" style="width: 50%; float: left; margin-right: 3px;">
+        <label>In:</label>
+        <span class="note">You can set exact time or range when your item should be delivered.</span>
+      </div>
+
+      <div class="mui-textfield mui-textfield-float-label">
+        <textarea placeholder="Semi Skimmed 1 Pint milk from Morrison, Thank You"></textarea>
+        <label>Details:</label>
+      </div>
+      <button type="submit" id="create-request-button" class="mui-btn mui-btn--primary mui-btn--raised">Create</button>
+    </form>
+  </div>
+</div>
+<div id="new-request-confirmation-modal-template" class="hide">
+  <div class="inner">
+    <div class="dialog processing">
+      Please wait, while we processing your request..
+    </div>
+    <div class="dialog confirm">
+      <h3>Thank You for using our service, <br/>it's honor for us to helping you.</h3>
+      <p>
+        Now you can rest and you will be notified when someone accept your "NearFetch" request.
+      </p>
+      <p>
+      <button type="submit" id="finish-new-request-button" class="mui-btn mui-btn--primary mui-btn--raised">Continue..</button>
+      </p>
+    </div>
+  </div>
+</div>
+<div id="new-journey-destination-modal-template" class="hide">
+  <div class="inner">
+    <form class="mui-form--inline">
+      <div class="mui-textfield" style="width: 60%;">
+        <input type="text" placeholder="Search or pick destination on map" >
+      </div>
+      <div class="mui-select" style="position: relative; top: -10px; margin: 0 5px;">
+        <select>
+          <option>200 m</option>
+          <option>500 m</option>
+          <option>1 km</option>
+        </select>
+      </div>
+      <div class="mui-select" style="position: relative; top: -10px; margin: 0 5px;">
+        <select>
+          <option>15:30</option>
+          <option>16:00</option>
+          <option>16:30</option>
+        </select>
+      </div>
+      <button class="mui-btn mui-btn--raised" id="save-destination-button" style="position: relative; top: -10px;">Save</button>
+    </form>
+  </div>
+</div>
+
+<div id="request-template">
+  <p>
+    Alice needs milk till 16:00 <a href="#">More details</a>
+  </p>
+  <p>
+    <button class="mui-btn mui-btn--primary mui-btn--raised">Accept Nearfetch</button>
+  </p>
+</div>
+</body>
+</html>
