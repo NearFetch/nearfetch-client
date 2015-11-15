@@ -85,47 +85,12 @@
         });
     }
 
-    doc.on('click','#select-journey',function(e){
-        showStep1();
-    })
-    doc.on('click','#select-fetch',function(e){
-        showStep2();
-    })
+    
 
-    doc.on('click', '#new-request-button', function (e) {
-        e.preventDefault();
-        try {
-            mui.overlay('off');
-        }
-        catch (exception) {
-        }
+    var Application=(function(svc,mc,tfl,sim,pol,tw,doc){
 
-        activateNewRequestModal();
-    });
-
-    doc.on('click', '#create-request-button', function (e) {
-        e.preventDefault();
-        try {
-            mui.overlay('off');
-        }
-        catch (exception) {
-        }
-        activateNewRequestConfirmationModal();
-    });
-
-    doc.on('click', '#finish-new-request-button', function (e) {
-        e.preventDefault();
-        try {
-            mui.overlay('off');
-        }
-        catch (exception) {
-        }
-
-        incrementCurrentRequests();
-        putMarkerOnMap();
-    });
-
-    var Application=(function(svc,mc,tfl,sim,pol,tw){
+        var  that=this;
+        this.$doc=doc;
 
         this.$Mastercard=mc;
         this.$TfL=tfl;
@@ -160,6 +125,15 @@
 		this.$event=[];
 		this.$listener={};
 
+         this.$doc.on('click','#select-journey',function(e){
+            console.log("click select journey");
+            confirm("Select BOBs request");
+            showChosenRoute();
+        });
+
+         function showChosenRoute(){
+            that.$route.showChosenRoute();
+         }
         function ShowSplashScreen(){
             console.log("show splashscreen");
         }
@@ -188,7 +162,10 @@
     			console.log("app started");
                 ShowSplashScreen();
     			
-    		}
+    		},
+            showRoute:function(){
+                //this.$route.showChosenRoute();
+            }
     	}
     });
     //var asvc=new ApplicationServices();
@@ -212,9 +189,47 @@
         var pol=new PoliceServices();
         var tw=new TwitterServices();
 
-        window.app=new Application(asvc,mc,tfl,sim,pol,tw);
+        window.app=new Application(asvc,mc,tfl,sim,pol,tw,doc);
         
-        
+
+
+        doc.on('click','#select-fetch',function(e){
+            showStep2();
+        })
+
+        doc.on('click', '#new-request-button', function (e) {
+            e.preventDefault();
+            try {
+                mui.overlay('off');
+            }
+            catch (exception) {
+            }
+
+            activateNewRequestModal();
+        });
+
+        doc.on('click', '#create-request-button', function (e) {
+            e.preventDefault();
+            try {
+                mui.overlay('off');
+            }
+            catch (exception) {
+            }
+            activateNewRequestConfirmationModal();
+        });
+
+        doc.on('click', '#finish-new-request-button', function (e) {
+            e.preventDefault();
+            try {
+                mui.overlay('off');
+            }
+            catch (exception) {
+            }
+
+            incrementCurrentRequests();
+            putMarkerOnMap();
+        });
+            
         app.start();
     }());
     
