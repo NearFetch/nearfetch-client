@@ -66,10 +66,10 @@ gulp.task('services',function(){
 gulp.task('server', function () {
     return gulp.src('')
         .pipe(webserver({
-            port: 3000,
-            livereload: true,
+            port: 3001,
+            livereload: false,
             directoryListing: true,
-            open: 'http://localhost:3000/www/index.html'
+            open: 'http://localhost:3001/www/alice.html'
         }));
 });
 
