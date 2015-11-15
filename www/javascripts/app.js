@@ -3,6 +3,8 @@
 // import io from 'socket.io-client';
 // import React from 'react';
 
+
+
 (function () {
     'use strict';
     var doc = $(document);
@@ -43,6 +45,25 @@
         });
     }
 
+    function putMarkerOnMap() {
+        var options = {
+            title: 'Alice needs fresh milk'
+        };
+
+        L.marker([51.50762, -0.131467], options).addTo(window.leaflet_map);
+    }
+
+    function parseUserRequests(str) {
+        return str.replace('(', '').replace(')', '') * 1;
+    }
+
+    function incrementCurrentRequests() {
+        var requests = parseUserRequests($($('.user-requests').first()).text()) + 1;
+        $('.user-requests').fadeOut(function () {
+            $('.user-requests').text('(' + requests + ')').fadeIn();
+        });
+    }
+
     doc.on('click', '#new-request-button', function (e) {
         e.preventDefault();
         try {
@@ -62,5 +83,22 @@
         catch (exception) {
         }
         activateNewRequestConfirmationModal();
+    });
+
+    doc.on('click', '#finish-new-request-button', function (e) {
+        e.preventDefault();
+        try {
+            mui.overlay('off');
+        }
+        catch (exception) {
+        }
+
+        incrementCurrentRequests();
+        putMarkerOnMap();
+    });
+
+    $(function () {
+        putMarkerOnMap();
+
     });
 }());

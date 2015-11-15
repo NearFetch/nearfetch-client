@@ -10,6 +10,5 @@ $(function () {
         id: 'mapbox.streets'
     }).addTo(map);
 
-
-    var my_loc_marker = L.marker([51.50762, -0.131467]).addTo(map);
+    window.leaflet_map = map;
 });
