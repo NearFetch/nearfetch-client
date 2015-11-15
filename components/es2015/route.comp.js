@@ -11,6 +11,8 @@
             ROUTE
         </div>
     `;
+    
+
     class RouteWidget extends HTMLElement {
 
         // Fires when an instance of the element is created.
@@ -20,9 +22,26 @@
             this.draw();
             
         }
-        connectParent(lf){
+        connectParent(lf,svc){
             console.log("route connected to leaflet");
             this.$leaflet=lf;
+            this.$services=svc;
+
+            this.getRoutes();
+            this.showRoute(this.$routes[0])
+
+        }
+        getRoutes(){
+            this.$routes=this.$services.getRoutes();
+        }
+        showRoute(rt){
+            var wps=[];
+            
+            for(var i=0;i<rt.waypoints.length;i++){
+                var wp=rt.waypoints[i];
+                wps.push(L.latLng(wp.x, wp.y));
+            }
+            this.$leaflet.showRoute(wps);
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}

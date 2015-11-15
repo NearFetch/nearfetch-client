@@ -53,6 +53,16 @@ gulp.task('comp',function(){
     .pipe(gulp.dest('components/es5'));
 })
 
+gulp.task('services',function(){
+    //babel components/es2015/date-widget.es2015.comp.js
+    //       --out-file components/es5/date-widget.comp.js
+    return gulp.src(['components/es2015/*.services.js'])
+    .pipe(babel({
+            presets: ['es2015']
+        }))
+    .pipe(gulp.dest('components/es5'));
+})
+
 gulp.task('server', function () {
     return gulp.src('')
         .pipe(webserver({
@@ -63,6 +73,7 @@ gulp.task('server', function () {
         }));
 });
 
-gulp.task('default', ['sass', 'sass:watch', 'comp','server'], function () {
+gulp.task('default', ['sass', 'sass:watch', 'comp','services','server'], function () {
      gulp.watch('components/es2015/*.comp.js', ['comp']);
+     gulp.watch('components/es2015/*.services.js', ['services']);
 });

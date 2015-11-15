@@ -3,8 +3,8 @@
 
 (function () {
     'use strict';
-
-
+    // http://leafletjs.com/reference.html
+    // http://www.liedman.net/leaflet-routing-machine/tutorials/basic-usage/
     let template = `
         <style>
             .leafcontainer{
@@ -18,8 +18,9 @@
         </div>
     `;
     let markerStyles=[{name:"default",icon:"",color:""},
-    {name:"beer",icon:"/icons/beer.png",color:"#FF0000"},
+            {name:"beer",icon:"/icons/beer.png",color:"#FF0000"},
             {name:"brolly",icon:"/icons/brolly.png",color:"#00FF00"}];
+
     class LeafletView extends HTMLElement {
 
         
@@ -82,9 +83,20 @@
             this.$route=route;
             
         }
+        getMap(){
+            return {L:L,map:this.$map};
+        }
         refreshMap(){
             console.log("refresh map");
             //this.connectElement();
+        }
+        clearRoutes(){
+            L.Routing.control({});
+        }
+        showRoute(wps){
+            L.Routing.control({
+              waypoints: wps
+            }).addTo(this.$map);
         }
          connectElement(){
             if(window.app!=undefined && this.$registered==undefined){
@@ -98,6 +110,11 @@
         }
         verify(){
             console.log("leaflet verified");
+            this.showRoutes();
+        }
+        showRoutes(){
+            //var rts=window.services.getRoutes();
+
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}
@@ -163,4 +180,5 @@
         }
     }
     document.registerElement('leaflet-view', LeafletView);
+
 })();

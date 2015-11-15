@@ -6,6 +6,8 @@
     "babel": "^6.1.18",
     "gulp-babel": "^6.1.0",
     "jspm": "^0.16.14",
+    "leaflet-routing-machine": "^2.5.0",
+    "sprintf-js": "^1.0.3",
     "webcomponents": "^0.1.4"
   },
   "files": [
