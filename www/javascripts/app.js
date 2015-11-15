@@ -50,7 +50,9 @@
             title: 'Alice needs fresh milk'
         };
 
-        L.marker([51.50762, -0.131467], options).addTo(window.leaflet_map);
+        L.marker([51.50762, -0.131467], options)
+        .addTo(window.leaflet_map)
+        .bindPopup($('#request-template').html());
     }
 
     function parseUserRequests(str) {
@@ -62,6 +64,44 @@
         $('.user-requests').fadeOut(function () {
             $('.user-requests').text('(' + requests + ')').fadeIn();
         });
+    }
+
+    function showDestinationModal() {
+        $('#new-journey-destination-modal-template').show();
+
+        bindDestinationMarker();
+    }
+
+
+    function hideDestinationModal() {
+        $('#new-journey-destination-modal-template').hide();
+
+        $(document).off('click', '#main-wrapper');
+    }
+
+    function bindDestinationMarker () {
+        $(document).off('click', '#main-wrapper');
+        $(document).on('click', '#main-wrapper', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            addDestinationMarker();
+        });
+    }
+
+    function addDestinationMarker() {
+        var loc = [51.507, -0.1334];
+
+        L.circle(loc, 200, {
+            color: 'blue',
+            // fillColor: '#f03',
+            fillOpacity: 0.1
+        }).addTo(window.leaflet_map);
+    }
+
+    function saveDestination () {
+        hideDestinationModal();
+        putMarkerOnMap();
     }
 
     doc.on('click', '#new-request-button', function (e) {
@@ -97,8 +137,29 @@
         putMarkerOnMap();
     });
 
+    doc.on('click', '#new-journey-destination-button', function (e) {
+        e.preventDefault();
+        try {
+            mui.overlay('off');
+        }
+        catch (exception) {
+        }
+
+        showDestinationModal();
+    });
+
+    doc.on('click', '#save-destination-button', function (e) {
+        e.preventDefault();
+        try {
+            mui.overlay('off');
+        }
+        catch (exception) {
+        }
+
+        saveDestination();
+    });
+
     $(function () {
-        putMarkerOnMap();
 
     });
 }());
