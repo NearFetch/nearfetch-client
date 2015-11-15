@@ -8,12 +8,11 @@
 
 var jqLite = require('../lib/jqLite.js'),
     util = require('../lib/util.js'),
-    cssSelector = '.mui-form-control',
-    emptyClass = 'mui-empty',
-    notEmptyClass = 'mui-not-empty',
-    dirtyClass = 'mui-dirty',
-    formControlClass = 'mui-form-control',
-    floatingLabelClass = 'mui-form-floating-label';
+    cssSelector = '.mui-textfield > input, .mui-textfield > textarea',
+    emptyClass = 'mui--is-empty',
+    notEmptyClass = 'mui--is-not-empty',
+    dirtyClass = 'mui--is-dirty',
+    floatingLabelClass = 'mui-textfield--float-label';
 
 
 /**
@@ -22,8 +21,8 @@ var jqLite = require('../lib/jqLite.js'),
  */
 function initialize(inputEl) {
   // check flag
-  if (inputEl._muiFormControl === true) return;
-  else inputEl._muiFormControl = true;
+  if (inputEl._muiTextfield === true) return;
+  else inputEl._muiTextfield = true;
 
   if (inputEl.value.length) jqLite.addClass(inputEl, notEmptyClass);
   else jqLite.addClass(inputEl, emptyClass);
@@ -57,11 +56,11 @@ function inputHandler() {
 module.exports = {
   /** Initialize input elements */
   initialize: initialize,
-  
+
   /** Initialize module listeners */
   initListeners: function() {
     var doc = document;
-    
+
     // markup elements available when method is called
     var elList = doc.querySelectorAll(cssSelector);
     for (var i=elList.length - 1; i >= 0; i--) initialize(elList[i]);
@@ -73,14 +72,14 @@ module.exports = {
 
     // add transition css for floating labels
     setTimeout(function() {
-      var css = '.' + floatingLabelClass + '{' + [
+      var css = '.mui-textfield.mui-textfield--float-label > label {' + [
         '-webkit-transition',
         '-moz-transition',
         '-o-transition',
         'transition',
         ''
       ].join(':all .15s ease-out;') + '}';
-      
+
       util.loadStyle(css);
     }, 150);
 
@@ -90,9 +89,9 @@ module.exports = {
         var targetEl = ev.target;
 
         if (targetEl.tagName === 'LABEL' &&
-            jqLite.hasClass(targetEl, floatingLabelClass)) {
+            jqLite.hasClass(targetEl.parentNode, floatingLabelClass)) {
           var inputEl = targetEl.previousElementSibling;
-          if (jqLite.hasClass(inputEl, formControlClass)) inputEl.focus();
+          if (inputEl) inputEl.focus();
         }
       });
     }

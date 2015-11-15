@@ -1,5 +1,31 @@
 # MUI Changelog
 
+## 0.2.1 - October 16, 2015
+
+* Moved textfield floating label modifier to wrapper class
+* Disabled use of .mui-textfield__input and .mui-textfield__label--floating
+
+## 0.2.0 - October 12, 2015
+
+* Added html email example layout
+
+## 0.2.0-rc3 - October 10, 2015
+
+* Changed .mui--notransition to .mui--no-transition
+* Added .mui--no-user-select
+
+## 0.2.0-rc2 - October 8, 2015
+
+* Removed color attribute from typography classes
+* Added text color helpers
+* Migrated colors.css to BEM syntax
+
+## 0.2.0-rc1 - October 7, 2015
+
+* Migrated CSS/JS and Email Libraries to BEM syntax
+* Removed internal bootstrap source code dependency
+* Removed MUIRoundButton from React library
+
 ## 0.1.23 - September 19, 2015
 
 * Added support for data-attributes in Tabs CSS

@@ -1,11 +1,6 @@
 $(function () {
-    var $main = $('#main');
-
-    $('<div />', {
-        id: 'map-holder'
-    }).appendTo($main);
-
-    var map = L.map('map-holder').setView([51.505, -0.09], 13);
+    var my_location = [51.50762, -0.131467];
+    var map = L.map('leafholder').setView(my_location, 16);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', {
         maxZoom: 18,
@@ -14,4 +9,7 @@ $(function () {
             'Imagery © <a href="http://mapbox.com">Mapbox</a>',
         id: 'mapbox.streets'
     }).addTo(map);
+
+
+    var my_loc_marker = L.marker([51.50762, -0.131467]).addTo(map);
 });
