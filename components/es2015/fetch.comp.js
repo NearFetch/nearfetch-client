@@ -25,11 +25,14 @@
             this.$container = this.shadowRoot.querySelector('.fetch-container');
             this.draw();
         }
+        addOverlays(){
+            this.addElements();
+        }
         connectParent(lf,svc){
             console.log("fetch connected to leaflet");
             this.$leaflet=lf;
             this.$services=svc;
-            this.addElements();
+            //this.addElements();
         }
         // Fires when an instance was inserted into the document.
         attachedCallback() {}

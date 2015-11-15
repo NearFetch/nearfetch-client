@@ -7,23 +7,23 @@
     <title>NearFetch</title>
     <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" href="/www/stylesheets/styles.css">
+    <link rel="stylesheet" href='/bower_components/typicons.font/src/font/typicons.min.css' />
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-
-    <script src="/bower_components/mui/dist/js/mui.min.js"></script>
 
     <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="/node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 
+    <script src="/bower_components/mui/dist/js/mui.min.js"></script>
+
     <script src="/bower_components/leaflet/dist/leaflet.js"></script>
     <script src="/node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-    <script src="/node_modules/sprintf-js/dist/sprintf.min.js"></script>
+    
     <script type="text/javascript" src="https://www.simplify.com/commerce/v1/simplify.js"></script>
 
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <script src="/components/es5/fetch.comp.js"></script>
     <script src="/components/es5/route.comp.js"></script>
     <script src="/components/es5/leaflet.comp.js"></script>
-    <link rel="stylesheet" href='/bower_components/typicons.font/src/font/typicons.min.css' />
     <script src="/jspm_packages/system.js"></script>
     <script src="/config.js"></script>
 
@@ -41,7 +41,7 @@
     </script>
 </head>
 <body>
-    
+
 <div id="splash" style="display:none">
     <img src="/www/images/NearFetch.jpg"/>   
 </div> 
@@ -87,6 +87,7 @@
         </div>
     </div>
 </div>
+
 <div id="new-request-modal-template" class="hide">
   <div class="inner">
     <form>
@@ -129,6 +130,30 @@
       <button type="submit" id="finish-new-request-button" class="mui-btn mui-btn--primary mui-btn--raised">Continue..</button>
       </p>
     </div>
+  </div>
+</div>
+
+<div id="step1-modal-template" class="hide">
+  <div class="inner">
+    <div class="dialog processing">
+     Step1
+    </div>
+    <div class="dialog confirm">
+      <h3>select your destination</h3>
+      
+      <h3>select your fetch</h3>
+      <button type="button" class="mui-btn mui-btn--primary">BOBs request for coffee</button>
+      <p>
+      <button type="submit" id="finish-step1-button" class="mui-btn mui-btn--primary mui-btn--raised">Continue..</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="step2-modal-template" class="hide">
+  <div class="inner">
+    <div class="co2-saved">CO2 saved = 0.125Kg2 compared to car travel</div>
+    
   </div>
 </div>
 </body>

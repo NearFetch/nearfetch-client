@@ -12,6 +12,28 @@
         $('#new-request-modal').remove();
     }
 
+    function showStep1(){
+         var template = $('#step1-template').html();
+
+        var modal = $('<div />', {
+            id: 'step1',
+            class: 'fullscreen-modal',
+            html: template
+        }).appendTo($('body'));
+
+        mui.overlay('on', modal.get(0));
+    }
+    function showStep1(){
+         var template = $('#step2-template').html();
+
+        var modal = $('<div />', {
+            id: 'step2',
+            class: 'fullscreen-modal',
+            html: template
+        }).appendTo($('body'));
+
+        mui.overlay('on', modal.get(0));
+    }
     function activateNewRequestModal() {
         var template = $('#new-request-modal-template').html();
 
@@ -62,6 +84,13 @@
             $('.user-requests').text('(' + requests + ')').fadeIn();
         });
     }
+
+    doc.on('click','#select-journey',function(e){
+        showStep1();
+    })
+    doc.on('click','#select-fetch',function(e){
+        showStep2();
+    })
 
     doc.on('click', '#new-request-button', function (e) {
         e.preventDefault();

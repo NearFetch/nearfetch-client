@@ -26,10 +26,10 @@
             console.log("route connected to leaflet");
             this.$leaflet=lf;
             this.$services=svc;
-
+        }
+        showChosenRoute(){
             this.getRoutes();
             this.showRoute(this.$routes[0])
-
         }
         getRoutes(){
             this.$routes=this.$services.getRoutes();
